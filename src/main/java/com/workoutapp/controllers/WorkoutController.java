@@ -20,24 +20,36 @@ import com.workoutapp.domain.Workout;
 public class WorkoutController {
 	
 	private List<Workout> workouts;
-	public WorkoutController(){
-		
-		workouts = new ArrayList<>();
-		List<Climb> climbs1 = new ArrayList<>();
-		climbs1.add(new Climb(510));
-		climbs1.add(new Climb(511));
-		climbs1.add(new Climb(511));
-		climbs1.add(new Climb(511));
-		climbs1.add(new Climb(511));
-		Workout w1 = new Climbing("First climb", new Date(), "Only got a few climbs in", 5, 80, "Mission Cliffs", false, climbs1);
-		Workout w2 = new Cardio("Bike ride", new Date(), "More mellow bike ride", 30, 300, 5);
-		
-		workouts.add(w1);
-		workouts.add(w2);
-	}
+//	public WorkoutController(){
+//		
+//		workouts = new ArrayList<>();
+//		List<Climb> climbs1 = new ArrayList<>();
+//		climbs1.add(new Climb(510));
+//		climbs1.add(new Climb(511));
+//		climbs1.add(new Climb(511));
+//		climbs1.add(new Climb(511));
+//		climbs1.add(new Climb(511));
+//		Workout w1 = new Climbing("First climb", new Date(), "Only got a few climbs in", 5, 80, "Mission Cliffs", false, climbs1);
+//		Workout w2 = new Cardio("Bike ride", new Date(), "More mellow bike ride", 30, 300, 5);
+//		
+//		workouts.add(w1);
+//		workouts.add(w2);
+//	}
+	
 	@RequestMapping(value = "/workouts", method = RequestMethod.GET)
-	public List<Workout> getAll(){
-		return workouts;
+	public String listWorkouts(Model model, @RequestParam(value="workouts", required=false, defaultValue="No recorded workouts") String workouts){
+		
+		model.addAttribute("workouts", getWorkoutStrings());
+		return "workouts";
+	}
+	
+	private String getWorkoutStrings(){
+		
+		StringBuilder builder = new StringBuilder();
+		for (Workout workout: workouts){
+			builder.append(workout.toString() + "\n");
+		}
+		return builder.toString();
 	}
 	
 }

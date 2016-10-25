@@ -5,6 +5,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Climbing extends Workout{
 	
 	private String name;
@@ -14,6 +17,7 @@ public class Climbing extends Workout{
 	private float duration;
 	private String location;
 	private boolean outdoor;
+	
 	private List<Climb> climbs;
 	
 	public Climbing(String name, Date date, String notes, int numClimbs, float duration, 

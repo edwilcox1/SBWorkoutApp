@@ -3,12 +3,14 @@ package com.workoutapp.domain;
 import java.util.Date;
 
 
-public abstract class Workout {
+import javax.persistence.*;
 
-	//TODO: Configure date formatting with Spring
+@Entity
+public abstract class Workout {
 	
-	protected static double id;
-	protected double woId;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	protected long id;
 	protected String name;
 	protected Date date;
 	protected String notes;
@@ -18,14 +20,12 @@ public abstract class Workout {
 		this.name = name;
 		this.date = date;
 		this.notes = notes;
-		this.woId = ++id;
 	}
 	
 	public Workout(Date date, String notes){
 		
 		this.date = date;
 		this.notes = notes;
-		this.woId = ++id;
 	}
 	
 	public Workout(String name, Date date){
@@ -41,11 +41,11 @@ public abstract class Workout {
 	}
 	
 	public double getId(){
-		return this.woId;
+		return this.id;
 	}
 	
 	
-	public void setName(String type){
+	public void setName(String name){
 		this.name = name;
 	}
 	
@@ -72,7 +72,10 @@ public abstract class Workout {
 	}
 	
 	
-	
+	@Override
+	public String toString(){
+		return String.format("%s: %s", this.name, this.notes);
+	}
 	
 	
 	

@@ -1,14 +1,23 @@
 package com.workoutapp.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
-
-public class Climb {
+@Entity
+@PrimaryKeyJoinColumn(name="id")
+@Table(name = "CLIMB")
+public class Climb implements Serializable {
+	
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	
 	private String name;
 	private int grade;
 	private String location;
 	
+//	@ManyToOne
+//	@JoinColumn(name="idWorkout")
 	
 	public Climb(String name, int grade, String location){
 		this.name = name;
@@ -17,15 +26,11 @@ public class Climb {
 	}
 	
 	public Climb(int grade, String location){
-		this.name = "none";
-		this.grade = grade;
-		this.location = location;
+		this("none", grade, location);
 	}
 	
 	public Climb(int grade){
-		this.name = "none";
-		this.grade = grade;
-		this.location = "unkown";
+		this(grade, "unknown");
 	}
 	
 	public void setName(String name){
