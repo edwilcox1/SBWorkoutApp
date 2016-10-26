@@ -5,12 +5,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name="id")
+@PrimaryKeyJoinColumn(name="climbId")
 @Table(name = "CLIMB")
 public class Climb implements Serializable {
 	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private Long climbId;
 	
 	private String name;
 	private int grade;

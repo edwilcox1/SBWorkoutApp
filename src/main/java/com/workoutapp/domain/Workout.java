@@ -1,47 +1,68 @@
 package com.workoutapp.domain;
 
+import java.util.Calendar;
 import java.util.Date;
 
 
 import javax.persistence.*;
 
 @Entity
+@Table(name="WORKOUT")
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING)
 public abstract class Workout {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	protected long id;
-	protected String name;
-	protected Date date;
-	protected String notes;
+	@Column(name="WORKOUT_ID")
+	private long workoutId;
+	
+	@Column(name="WORKOUT_NAME")
+	private String name;
+	
+	@Column(name="WORKOUT_DATE")
+	private Date date;
+	
+	@Column(name="DURATION")
+	private float duration;
+	
+	@Column(name="NOTES")
+	private String notes;
+	
+	@Column(name="LOCATION")
+	private String location;
 	
 	
-	public Workout(String name, Date date, String notes){
+	public Workout(String name, Date date, String notes, String location, float duration){
 		this.name = name;
 		this.date = date;
 		this.notes = notes;
+		this.location = location;
+		this.duration = duration;
 	}
 	
-	public Workout(Date date, String notes){
-		
-		this.date = date;
-		this.notes = notes;
+	public Workout(Date date, String notes, String location, float duration){
+		this("None", date, notes, location, duration);
 	}
 	
-	public Workout(String name, Date date){
-		this.name = name;
-		this.date = date;
+	public Workout(String name, Date date, String location, float duration){
+		this(name, date, "none", location, duration);
 		
 	}
 	
 	public Workout(){
+		Calendar today = Calendar.getInstance();
+		today.set(Calendar.HOUR_OF_DAY, 0);
+		
 		this.name = "none";
-		this.date = new Date();
+		this.date = today.getTime();
 		this.notes = "none";
+		this.duration = 0.0f;
+		
 	}
 	
 	public double getId(){
-		return this.id;
+		return this.workoutId;
 	}
 	
 	
@@ -58,19 +79,34 @@ public abstract class Workout {
 		this.date = date;
 	}
 	
-	public Date getDate(){
-		return this.date;
+	public void setDuration(float duration){
+		this.duration = duration;
+	}
+	
+	public void setLocation(String location){
+		this.location = location;
 	}
 	
 	public void setNotes(String notes){
 		this.notes = notes;
 	}
 	
+	public Date getDate(){
+		return this.date;
+	}
+	
+
+	public String getLocation(){
+		return location;
+	}
 	
 	public String getNotes(){
 		return this.notes;
 	}
 	
+	public float getDuration(){
+		return this.duration;
+	}
 	
 	@Override
 	public String toString(){

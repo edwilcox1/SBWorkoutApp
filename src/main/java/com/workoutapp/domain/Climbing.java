@@ -5,39 +5,34 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Where;
 
 @Entity
+@Table(name="CLIMBING")
+@DiscriminatorValue("Climbing")
 public class Climbing extends Workout{
 	
-	private String name;
-	private Date date;
-	private String notes;
+	@Column(name="NUM_CLIMBS")
 	private int numClimbs;
-	private float duration;
-	private String location;
+	
+	@Column(name="OUTDOOR")
 	private boolean outdoor;
 	
+	@OneToMany(mappedBy="climbId")
+	@Where(clause="DTYPE='CLIMBING'")
 	private List<Climb> climbs;
 	
 	public Climbing(String name, Date date, String notes, int numClimbs, float duration, 
 			String location, boolean outdoor, List<Climb> climbs){
 		
-		super(name, date, notes);
+		super(name, date, notes, location, duration);
 		this.numClimbs = numClimbs;
-		this.duration = duration;
-		this.location = location;
-		this.outdoor = outdoor;
-		this.climbs = climbs;
-		
-	}
-	
-	public Climbing(int numClimbs, String location, 
-			boolean outdoor, List<Climb> climbs){
-		
-		super();
-		this.numClimbs = numClimbs;
-		this.location = location;
 		this.outdoor = outdoor;
 		this.climbs = climbs;
 		
@@ -52,19 +47,19 @@ public class Climbing extends Workout{
 	}
 	
 	public void setDuration(float duration){
-		this.duration = duration;
+		super.setDuration(duration);
 	}
 	
 	public float getDuration(){
-		return this.duration;
+		return super.getDuration();
 	}
 	
 	public void setLocation(String location){
-		this.location = location;
+		super.setLocation(location);
 	}
 	
 	public String getLocation(){
-		return this.location;
+		return super.getLocation();
 	}
 	
 	public void setOutdoor(boolean outdoor){

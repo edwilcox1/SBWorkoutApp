@@ -2,23 +2,25 @@ package com.workoutapp.domain;
 
 import java.util.Date;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="CARDIO")
+@DiscriminatorValue("Cardio")
 public class Cardio extends Workout {
 	
 	private String name;
 	private Date date;
 	private String notes;
+	private String location;
 	private float duration;
 	private int calories;
 	private float distance;
 	
 	
-	
-	
-	
-	public Cardio(String name, Date date, String notes, float duration, int calorie, float distance){
-		super(name, date, notes);
-		this.name = name;
-		this.duration = duration;
+	public Cardio(String name, Date date, String notes, float duration, String location, int calorie, float distance){
+		super(name, date, notes, location, duration);
+		
 		this.calories = calories;
 		this.distance = distance;
 	}
