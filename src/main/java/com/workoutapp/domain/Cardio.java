@@ -14,13 +14,13 @@ public class Cardio extends Workout {
 	private String notes;
 	private String location;
 	private float duration;
+	@Column(name="CALORIES")
 	private int calories;
 	private float distance;
 	
 	
 	public Cardio(String name, Date date, String notes, float duration, String location, int calorie, float distance){
 		super(name, date, notes, location, duration);
-		
 		this.calories = calories;
 		this.distance = distance;
 	}

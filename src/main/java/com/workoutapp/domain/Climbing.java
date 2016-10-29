@@ -27,6 +27,10 @@ public class Climbing extends Workout{
 	@Where(clause="DTYPE='CLIMBING'")
 	private List<Climb> climbs;
 	
+	public Climbing(){
+		
+	}
+	
 	public Climbing(String name, Date date, String notes, int numClimbs, float duration, 
 			String location, boolean outdoor, List<Climb> climbs){
 		
@@ -35,6 +39,18 @@ public class Climbing extends Workout{
 		this.outdoor = outdoor;
 		this.climbs = climbs;
 		
+	}
+	
+	public void setName(String name){
+		super.setName(name);
+	}
+	
+	public void setNotes(String notes){
+		super.setNotes(notes);
+	}
+	
+	public void setDate(Date date){
+		super.setDate(date);
 	}
 	
 	public void setNumClimbs(int numClimbs){
