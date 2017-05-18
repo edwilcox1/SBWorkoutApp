@@ -1,5 +1,7 @@
 package com.workoutapp.domain;
 
+import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -44,7 +46,10 @@ public abstract class Workout {
 	public Workout(Date date, String notes, String location, float duration){
 		this("None", date, notes, location, duration);
 	}
-	
+
+	public Workout(String name, String notes) {
+		this(name, new Date(), notes, "N/A", 0.0f);
+	}
 	public Workout(String name, Date date, String location, float duration){
 		this(name, date, "none", location, duration);
 		

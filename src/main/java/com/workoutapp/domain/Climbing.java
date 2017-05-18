@@ -27,8 +27,10 @@ public class Climbing extends Workout{
 	@Where(clause="DTYPE='CLIMBING'")
 	private List<Climb> climbs;
 	
-	public Climbing(){
-		
+	public Climbing(){}
+
+	public Climbing(String name, String notes) {
+		super(name, notes);
 	}
 	
 	public Climbing(String name, Date date, String notes, int numClimbs, float duration, 
@@ -91,5 +93,19 @@ public class Climbing extends Workout{
 	
 	public List<Climb> getClimbs(){
 		return this.climbs;
+	}
+
+	public String getClimbStrings() {
+		StringBuilder buf = new StringBuilder();
+		for (Climb climb : climbs) {
+			buf.append(climb.toString()+"\n");
+			buf.append(climb.getGrade()+"\n");
+		}
+		return buf.toString();
+	}
+
+	@Override
+	public String toString() {
+		return this.getName()+"\n"+this.getLocation()+"\n"+this.getNotes()+ this.getClimbStrings();
 	}
 }

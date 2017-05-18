@@ -1,9 +1,7 @@
 package com.workoutapp.controllers;
 
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +19,7 @@ import com.workoutapp.domain.Workout;
 public class WorkoutController {
 	
 	private List<Workout> workouts;
+
 	public WorkoutController(){
 		
 		workouts = new ArrayList<>();
@@ -30,7 +29,8 @@ public class WorkoutController {
 		climbs1.add(new Climb(511));
 		climbs1.add(new Climb(511));
 		climbs1.add(new Climb(511));
-		Workout w1 = new Climbing("First climb", new Date(), "Only got a few climbs in", 5, 80, "Mission Cliffs", false, climbs1);
+
+		Workout w1 = new Climbing("First ever climb", new Date(), "Only got a few climbs in", 5, 80, "Mission Cliffs", false, climbs1);
 		Workout w2 = new Cardio("Bike ride", new Date(), "More mellow bike ride", 30, "Diablo Rock Gym", 300, 5);
 		
 		workouts.add(w1);
@@ -53,16 +53,16 @@ public class WorkoutController {
 	
 	@RequestMapping(value="/log/climb", method = RequestMethod.POST)
 	public String workoutSubmit(@ModelAttribute Workout workout){
-		
 		return "result";
 	}
+
 	private String getWorkoutStrings(){
 		
-		StringBuilder builder = new StringBuilder();
+		StringBuilder buf = new StringBuilder();
 		for (Workout workout: workouts){
-			builder.append(workout.toString() + "\n");
+			buf.append(workout.toString() + "\n");
 		}
-		return builder.toString();
+		return buf.toString();
 	}
 	
 }

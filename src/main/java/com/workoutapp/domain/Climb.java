@@ -56,4 +56,9 @@ public class Climb implements Serializable {
 	public String getLocation(){
 		return this.location;
 	}
+
+	@Override
+	public String toString() {
+		return this.name+": "+this.grade+": "+this.location;
+	}
 }

@@ -55,8 +55,9 @@ public class Cardio extends Workout {
 	public float getDistance(){
 		return this.distance;
 	}
-	
-	
+
+	public String toString() { return this.name+" \n" + this.notes + "\n" + this.distance; }
+
 	
 	
 }
