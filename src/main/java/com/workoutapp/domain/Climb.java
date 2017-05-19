@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name="climbId")
+@PrimaryKeyJoinColumn(name="climb_id")
 @Table(name = "CLIMB")
 public class Climb implements Serializable {
 	

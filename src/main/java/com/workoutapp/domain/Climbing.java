@@ -4,11 +4,7 @@ package com.workoutapp.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Where;
 
@@ -23,7 +19,7 @@ public class Climbing extends Workout{
 	@Column(name="OUTDOOR")
 	private boolean outdoor;
 	
-	@OneToMany(mappedBy="climbId")
+	@OneToMany
 	@Where(clause="DTYPE='CLIMBING'")
 	private List<Climb> climbs;
 	
