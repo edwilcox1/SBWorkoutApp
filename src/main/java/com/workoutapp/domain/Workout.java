@@ -1,7 +1,5 @@
 package com.workoutapp.domain;
 
-import com.sun.xml.internal.ws.api.pipe.FiberContextSwitchInterceptor;
-
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,6 +16,10 @@ public abstract class Workout {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="WORKOUT_ID")
 	private long workoutId;
+
+//	@ManyToOne
+//	@JoinColumn(name="USER_ID")
+//	private User user;
 	
 	@Column(name="WORKOUT_NAME")
 	private String name;
@@ -66,7 +68,7 @@ public abstract class Workout {
 		
 	}
 	
-	public double getId(){
+	public double getWorkoutId(){
 		return this.workoutId;
 	}
 	

@@ -18,9 +18,8 @@ public class Climbing extends Workout{
 	
 	@Column(name="OUTDOOR")
 	private boolean outdoor;
-	
+
 	@OneToMany
-	@Where(clause="DTYPE='CLIMBING'")
 	private List<Climb> climbs;
 	
 	public Climbing(){}

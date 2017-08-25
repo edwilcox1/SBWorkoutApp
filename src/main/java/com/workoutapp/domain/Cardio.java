@@ -8,11 +8,7 @@ import javax.persistence.*;
 @Table(name="CARDIO")
 @DiscriminatorValue("Cardio")
 public class Cardio extends Workout {
-	
-	private String name;
-	private Date date;
-	private String notes;
-	private String location;
+
 	private float duration;
 	@Column(name="CALORIES")
 	private int calories;
@@ -56,8 +52,5 @@ public class Cardio extends Workout {
 		return this.distance;
 	}
 
-	public String toString() { return this.name+" \n" + this.notes + "\n" + this.distance; }
-
-	
-	
+	public String toString() { return this.getName()+" \n" + this.getNotes() + "\n" + this.distance; }
 }

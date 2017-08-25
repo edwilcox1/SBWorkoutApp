@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
-@PrimaryKeyJoinColumn(name="climb_id")
+@PrimaryKeyJoinColumn(name="CLIMB_ID")
 @Table(name = "CLIMB")
 public class Climb implements Serializable {
 	
@@ -16,19 +16,19 @@ public class Climb implements Serializable {
 	private int grade;
 	private String location;
 	
-//	@ManyToOne
-//	@JoinColumn(name="idWorkout")
-	
 	public Climb(String name, int grade, String location){
 		this.name = name;
 		this.grade = grade;
 		this.location = location;
 	}
-	
+
+
+	public Climb(String name, int grade) { this(name, grade, "unkown"); }
+
 	public Climb(int grade, String location){
-		this("none", grade, location);
+		this( "none", grade, location);
 	}
-	
+
 	public Climb(int grade){
 		this(grade, "unknown");
 	}
